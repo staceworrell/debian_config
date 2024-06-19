@@ -1,0 +1,14 @@
+# Setup lsd if installed
+CMD=lsd
+if command -v $CMD &> /dev/null 
+then
+	alias ls="lsd"
+	alias lt="lsd --tree --depth=2"
+	alias ll="lsd -al"
+	alias l.="lsd -A"
+else
+	alias ls='ls --color=auto'
+	alias ll="ls -al"
+	alias l.="ls -A"
+fi
+alias l='/usr/bin/ls --color=always'
