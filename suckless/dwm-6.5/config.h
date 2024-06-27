@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 //static const char *fonts[]          = { "monospace:size=10" };
 //static const char dmenufont[]       = "monospace:size=10";
-static const char *fonts[]          = { "DejaVuSansM Nerd Font Mono:size=14", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true" };
-static const char dmenufont[]       = "DejaVuSansM Nerd Font Mono:size=14";
+static const char *fonts[]          = { "FiraCode Nerd Font Mono:size=12" };
+static const char dmenufont[]       = "FiraCode Nerd Font Mono:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -23,8 +23,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 static const unsigned int alphas[][3]      = {
-    /*               fg      bg        border*/
-    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	/*               fg      bg        border*/
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
@@ -36,7 +36,7 @@ static const char *const autostart[] = {
 	"dunst", NULL,
 	"picom", "--animations", "-b", NULL,
 	"sh", "-c", "nitrogen --restore", NULL,
-	"slstatus", NULL,
+//	"slstatus", NULL,
 	NULL /* terminate */
 };
 
@@ -50,7 +50,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -58,7 +58,7 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int attachbelow = 1;    /* 1 means attach after the currently active window */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -89,17 +89,16 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_c,          spawn,      SHCMD ("google-chrome")},
 	{ MODKEY,                       XK_p,          spawn,      SHCMD ("flameshot full -p ~/Screenshots/")},
+	{ MODKEY,                       XK_a,          spawn,      SHCMD ("blueman-manager")},
 	{ MODKEY|ShiftMask,             XK_p,          spawn,      SHCMD ("flameshot gui -p ~/Screenshots/")},
 	{ MODKEY|ControlMask,           XK_p,          spawn,      SHCMD ("flameshot gui --clipboard")},
 	{ MODKEY,                       XK_e,          spawn,      SHCMD ("thunar")},
-//	{ 0,                            0x1008ff02,    spawn,      SHCMD ("xbacklight -inc 10")},
-//	{ 0,                            0x1008ff03,    spawn,      SHCMD ("xbacklight -dec 10")},
-//	{ 0,                            0x1008ff1b,    spawn,      SHCMD ("xbacklight -inc 10")},
-//	{ 0,                            0x1008ff8e,    spawn,      SHCMD ("xbacklight -dec 10")},
 	{ 0,                            0x1008ff11,    spawn,      SHCMD ("amixer sset Master 5%- unmute")},
 	{ 0,                            0x1008ff12,    spawn,      SHCMD ("amixer sset Master $(amixer get Master | grep -q '\\[on\\]' && echo 'mute' || echo 'unmute')")},
 	{ 0,                            0x1008ff13,    spawn,      SHCMD ("amixer sset Master 5%+ unmute")},	
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },

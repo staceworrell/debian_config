@@ -66,12 +66,15 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ alsa_master_vol, " => %6s | ", NULL },
-	{ temp, "  => %6sC | ", "/sys/class/thermal/thermal_zone0/temp" },
-	{ cpu_perc, "  %6s% | ", NULL },
-	{ ram_perc, " => %6s% | ", NULL },
-	{ battery_perc, "  %6s% | ", "BAT0" },
-	{ netspeed_rx, "   %8s | ", "wlp0s20f3" },
-	{ netspeed_tx, "  %8s | ", "wlp0s20f3" },
+	{ alsa_master_vol, " Vol:%4s |", NULL },
+	{ temp, "Temp:%3sc|", "/sys/class/thermal/thermal_zone0/temp" },
+	{ cpu_perc, "CPU:%3s%%|", NULL },
+	{ ram_perc, "RAM:%3s%%|", NULL },
+	{ disk_free, "root:%6s|", "/" },
+	{ disk_free, "home:%6s|", "/home" },
+	{ battery_perc, "Battery:%4s%%|", "BAT0" },
+	{ wifi_perc, "Wifi:%3s%%|", "wlp0s20f3" },
+	{ netspeed_rx, "Rx %8s|", "wlp0s20f3" },
+	{ netspeed_tx, "Tx %8s|", "wlp0s20f3" },
 	{ datetime, "  %s",           "%F %T" }
 };
