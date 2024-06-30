@@ -113,6 +113,7 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 #######################################################
 # Set the ultimate amazing command prompt
 #######################################################
+export GRIM_DEFAULT_DIR=~/Screenshots/
 
 # custom aliases
 if [ -f ~/.sh_aliases ]; then
